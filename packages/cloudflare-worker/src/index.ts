@@ -1,12 +1,47 @@
 import { AIOStreams, errorResponse, validateConfig } from '@aiostreams/addon';
 import manifest from '@aiostreams/addon/src/manifest';
 import { Config, StreamRequest } from '@aiostreams/types';
-import { Cache, unminifyConfig } from '@aiostreams/utils';
+import { unminifyConfig } from '@aiostreams/utils';
 
 const HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
 };
+
+const PROXY_URL = 'https://warp-proxy.bolabaden.org';
+
+// Proxy utility function
+async function fetchWithProxy(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
+  try {
+    // Convert input to string URL
+    const targetUrl = typeof input === 'string' ? input : input instanceof URL ? input.toString() : input.url;
+
+    // First, try to use the proxy
+    const proxyUrl = `${PROXY_URL}/fetch?url=${encodeURIComponent(targetUrl)}`;
+    const proxyResponse = await fetch(proxyUrl, {
+      ...init,
+      // Add API key and other headers
+      headers: {
+        ...init?.headers,
+        'User-Agent': 'AIOStreams-CloudflareWorker/1.0',
+        'X-API-Key': 'sk_IQys9kpENSiYY8lFuCslok3PauKBRSzeGprmvPfiMWAM9neeXoSqCZW7pMlWKbqPrwtF33kh1F73vf7D4PBpVfZJ1reHEL8d6ny6J03Ho',
+      },
+    });
+
+    // If proxy responds successfully, return the response
+    if (proxyResponse.ok) {
+      return proxyResponse;
+    }
+
+    // If proxy fails, fall back to direct request
+    console.warn(`Proxy failed with status ${proxyResponse.status}, falling back to direct request`);
+    return await fetch(input, init);
+  } catch (error) {
+    // If proxy is completely unreachable, fall back to direct request
+    console.warn('Proxy unreachable, falling back to direct request:', error);
+    return await fetch(input, init);
+  }
+}
 
 function createJsonResponse(data: any): Response {
   return new Response(JSON.stringify(data, null, 4), {
@@ -149,9 +184,18 @@ export default {
           request.headers.get('X-Client-IP') ||
           undefined;
 
-        const aioStreams = new AIOStreams(decodedConfig);
-        const streams = await aioStreams.getStreams(streamRequest);
-        return createJsonResponse({ streams });
+        // Temporarily replace global fetch with proxy-enabled fetch for AIOStreams
+        const originalFetch = globalThis.fetch;
+        globalThis.fetch = fetchWithProxy;
+
+        try {
+          const aioStreams = new AIOStreams(decodedConfig);
+          const streams = await aioStreams.getStreams(streamRequest);
+          return createJsonResponse({ streams });
+        } finally {
+          // Restore original fetch
+          globalThis.fetch = originalFetch;
+        }
       }
 
       const notFound = await env.ASSETS.fetch(
