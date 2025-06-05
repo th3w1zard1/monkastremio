@@ -1,0 +1,14 @@
+{
+  "name": "@aiostreams/formatters",
+  "version": "1.21.1",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "build": "tsc"
+  },
+  "description": "Library to take parsed information and return a formatted Stremio stream name and description",
+  "dependencies": {
+    "@aiostreams/types": "^1.0.0",
+    "@aiostreams/utils": "^1.0.0"
+  }
+}

@@ -1,0 +1,93 @@
+.card {
+  background-color: #1a1a1a; /* Slightly lighter black */
+  border-radius: var(--borderRadius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+  transition:
+    background-color 0.5s ease,
+    opacity 0.5s ease,
+    transform 0.3s ease,
+    scale 0.3s ease,
+    box-shadow 0.6s ease,
+    max-height 0.8s ease;
+  max-height: 60px; /* Initial height for the card */
+  overflow: hidden;
+}
+
+.card.enabled {
+  max-height: 500px; /* Adjust this value based on the expected maximum height */
+}
+
+.card.disabled {
+  background-color: #131313; /* Greyed out */
+  box-shadow: none;
+  scale: 0.98;
+  opacity: 0.5;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.smallText {
+  font-size: 0.7em;
+  color: #ffffffc5;
+}
+
+.smallText a {
+  color: #dfdfdf67;
+}
+
+.serviceName {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.actionButton {
+  background-color: transparent;
+  border-radius: var(--borderRadius);
+  display: flex;
+  margin: 5px;
+  font-size: 1.2em;
+  align-items: center;
+  border-width: 0;
+  transition: transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.actionButton:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.actionButton:active {
+  transform: scale(0.9);
+}
+
+.textInput {
+  flex: 1;
+  padding-right: 40px; /* Space for the reset button */
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@aiostreams/types",
+  "version": "1.21.1",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "build": "tsc"
+  },
+  "description": "Library to parse a torrent filename "
+}

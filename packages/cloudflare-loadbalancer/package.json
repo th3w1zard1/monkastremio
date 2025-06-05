@@ -1,0 +1,19 @@
+{
+    "name": "@aiostreams/cloudflare-loadbalancer",
+    "version": "1.0.0",
+    "description": "Cloudflare Worker that routes traffic between multiple AIOStreams backends",
+    "scripts": {
+        "deploy": "wrangler deploy",
+        "dev": "wrangler dev",
+        "start": "wrangler dev",
+        "test": "vitest",
+        "cf-typegen": "wrangler types"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@cloudflare/workers-types": "^4.20241224.0",
+        "esbuild": "^0.25.5",
+        "typescript": "^5.5.2",
+        "wrangler": "^4.18.0"
+    }
+}

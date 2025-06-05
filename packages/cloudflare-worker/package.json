@@ -1,0 +1,21 @@
+{
+  "name": "@aiostreams/cloudflare-worker",
+  "version": "1.21.1",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "test": "vitest",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@aiostreams/addon": "^1.0.0",
+    "@aiostreams/types": "^1.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241224.0",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.5.2",
+    "wrangler": "^4.18.0"
+  }
+}

@@ -1,0 +1,276 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  max-width: 800px;
+  border-radius: var(--borderRadius);
+  margin: 0 auto; /* Center the header within the content */
+}
+
+.content {
+  position: relative;
+  background-color: #000000;
+  border-radius: var(--borderRadius);
+  box-shadow: 0 8px 16px rgb(0, 0, 0);
+  padding: 20px;
+  width: 80%;
+  max-width: 700px;
+  margin: 20px;
+}
+
+.branding {
+  text-align: center;
+  margin: 20px;
+  font-size: 16px;
+}
+
+@media (max-width: 1000px) {
+  .content {
+    margin: 0;
+    border-radius: 0;
+    width: 100%;
+  }
+}
+.section {
+  margin-bottom: 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--borderRadius);
+  padding: 10px;
+  border-color: #777777;
+}
+
+.setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settingDescription {
+  flex: 1;
+}
+
+.settingInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin: 0 10px;
+}
+
+.settingInput select {
+  height: 30px;
+}
+
+.slidersContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.slidersSetting {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sliderValue {
+  margin-right: auto;
+  padding: 5px;
+}
+
+.installButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.installButton {
+  background-color: #ffffff; /* Green */
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: var(--borderRadius);
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.111);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    opacity 0.2s,
+    background-color 0.2s;
+}
+
+.installButton:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.225);
+}
+
+.installButton:active {
+  transform: scale(0.98);
+}
+
+.installButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  background-color: #ddddddbe;
+}
+
+.version {
+  position: absolute;
+  top: -5px;
+  right: -60px;
+  font-size: 14px;
+  color: black;
+  background-color: rgb(241, 241, 241);
+  font-weight: bold;
+  padding: 5px;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: var(--borderRadius);
+  transition:
+    scale 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+@media (pointer: fine) {
+  .version:hover {
+    background-color: rgb(221, 221, 221);
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+}
+
+.version:active {
+  transform: scale(0.9);
+}
+
+.mediaFlowConfig {
+  transition:
+    margin-top 0.6s,
+    opacity 0.6s,
+    transform 1s;
+}
+
+.mediaFlowConfig.hidden {
+  opacity: 0;
+  margin-top: -655px;
+  transform: scale(0);
+  transition:
+    margin-top 0.5s,
+    opacity 0.2s,
+    transform 0.4s;
+}
+
+.mediaFlowSection {
+  padding: 10px;
+  margin-top: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--borderRadius);
+  border-color: #777777;
+}
+
+.stremThruConfig {
+  transition:
+    margin-top 0.6s,
+    opacity 0.6s,
+    transform 1s;
+}
+
+.stremThruConfig.hidden {
+  opacity: 0;
+  margin-top: -626px;
+  transform: scale(0);
+  transition:
+    margin-top 0.5s,
+    opacity 0.2s,
+    transform 0.4s;
+}
+
+.stremThruSection {
+  padding: 10px;
+  margin-top: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--borderRadius);
+  border-color: #777777;
+}
+
+.supportMeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #080808;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: none;
+  margin: 1px;
+  color: white;
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between the heart and text */
+  padding: 8px 16px; /* Adjust padding as needed */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  font-size: 14px; /* Text size */
+  font-family: Arial, sans-serif; /* Font family */
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border-color 0.3s;
+}
+
+@media (pointer: fine) {
+  .supportMeButton:hover {
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.1
+    ); /* Slight background highlight on hover */
+    border-color: rgba(255, 255, 255, 0.815); /* More visible border on hover */
+  }
+}
+
+.supportMeButton:active {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Slight background highlight on click */
+  border-color: rgba(255, 255, 255, 0.815); /* More visible border on click */
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin: 4px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.helpText {
+  font-size: 0.8em;
+  color: #666;
+  margin-top: 4px;
+  font-family: monospace;
+  white-space: pre-line;
+}

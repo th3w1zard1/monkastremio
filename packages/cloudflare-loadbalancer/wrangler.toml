@@ -1,0 +1,28 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "aiostreams-loadbalancer"
+main = "src/index.ts"
+compatibility_date = "2024-12-24"
+compatibility_flags = ["nodejs_compat"]
+
+# Workers Logs
+[observability]
+enabled = true
+
+# Variable bindings
+[vars]
+# Primary domain the worker is handling
+PRIMARY_DOMAIN = "aiostreams.example.com"
+# Upstream backends
+BACKEND_CF = "aiostreams-cf.example.com"
+BACKEND_KOYEB = "aiostreams-koyeb.example.com"
+BACKEND_DUCK = "aiostreams.example.duckdns.org"
+# Sticky session configuration
+STICKY_SESSIONS = true
+# Session cookie name (used if sticky sessions are enabled)
+SESSION_COOKIE_NAME = "aiostreams_backend"
+# Session cookie TTL in seconds (default: 86400 = 1 day)
+SESSION_COOKIE_TTL = "86400"
+# How long to mark a backend as down after a failure (in milliseconds)
+BACKEND_DOWN_TIME = "30000"
+# Maximum number of retries when a backend fails
+MAX_RETRIES = "3" 
