@@ -1,4 +1,4 @@
-FROM node:22-alpine AS builder
+FROM node:slim AS builder
 
 WORKDIR /build
 
@@ -35,7 +35,7 @@ RUN npm run build
 # Remove development dependencies.
 RUN npm --workspaces prune --omit=dev
 
-FROM node:22-alpine AS final
+FROM node:slim AS final
 
 WORKDIR /app
 
@@ -62,6 +62,8 @@ COPY --from=builder /build/packages/utils/dist ./packages/utils/dist
 
 COPY --from=builder /build/node_modules ./node_modules
 
-EXPOSE 3000
+ARG PORT=3000
+ENV PORT=${PORT}
+EXPOSE ${PORT}
 
 ENTRYPOINT ["npm", "run", "start:addon"]
